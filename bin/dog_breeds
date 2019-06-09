@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/dog_breeds'
+
+DogBreeds::CLI.new.call
