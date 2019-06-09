@@ -5,14 +5,12 @@ class DogBreeds::DogBreed
   @@all = []
 
   def self.new_from_index_page(dog_breed)
-    self.new(dog_breed.css("h3.breed-type-card__title").text)
+    self.new(dog_breed.css("h3.breed-type-card__title").text, dog_breed.css("div.breed-type-card a.attribute href").text
   end
 
-  def initialize(name=nil, url=nil, location=nil, position=nil)
+  def initialize(name = nil, url = nil)
     @name = name
     @url = url
-    @location = location
-    @position = position
     @@all << self
   end
 
@@ -24,37 +22,71 @@ class DogBreeds::DogBreed
     self.all[id-1]
   end
 
-  def best_dish
-    @best_dish ||= doc.css("div.c-4.nr.nt ul:nth-child(8) li").text
-    # @best_dish ||= doc.xpath("//div[@class='c-4 nr nt']/ul[3]/li").text
+  def temperament
+    @temperament ||= doc.css('div.breed-hero .panel-flex__aside span')[1].text
   end
 
-  def food_style
-    @food_style ||= doc.css("div.c-4.nr.nt ul:nth-child(6) li").text
-    # @food_style ||= doc.xpath("//div[@class='c-4 nr nt']/ul[2]/li").text
-  end
-
-  def contact
-    @contact ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(1)").text.split("+").join(". Tel: +")
-    # @contact ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[1]").text.split("+").join(". Tel: +")
-  end
-
-  def head_chef
-    @head_chef ||= doc.css("div.c-4.nr.nt ul:nth-child(3) li").text.split(" (pictured)").join("")
-    # @head_chef ||= doc.xpath("//div[@class='c-4 nr nt']/ul[1]/li").text.split(" (pictured)").join("")
-  end
-
-  def website_url
-    @website_url ||= doc.css("div.c-4.nr.nt ul:nth-child(10) li:nth-child(2) a").text
-    # @website_url ||= doc.xpath("//div[@class='c-4 nr nt']/ul[4]/li[2]/a").text
-  end
-
-  def description
-    @description ||= doc.css("div.c-8.nl.nt > p:nth-child(6)").text
-    # @description ||= doc.xpath("//div[@class='c-8 nl nt']/p[3]").text
-  end
+  def summary
+    @summary ||= doc.css('div.breed-hero__footer').text.strip
 
   def doc
     @doc ||= Nokogiri::HTML(open(self.url))
+  end
+end
+
+
+def breed_info
+
+  details_array = []
+  new_array = []
+  new_info_array = []
+
+
+
+    info = doc.css('div.panel-flex__aside > ul > li').each do |li|
+      long_details = li.css('span').text.strip
+      details = long_details.slice(0..(long_details.index('group')))
+
+       details_array << "#{details}"
+
+       details_array.each do |string|
+         new_array << string.split(":")
+
+         new_array.each do |traits_array|
+           traits_array.each do |trait|
+
+           if trait.include?("inches")
+             self.height = trait
+           elsif trait.include?("Ranks")
+             self.popularity = trait
+           elsif trait.include?("pounds")
+             self.weight = trait
+           elsif trait.include?("years")
+             self.life_expectancy = trait
+
+
+            new_info = doc.css('div.tabs__tab-panel-content p').each do |thing|
+              new_details = thing.text.strip
+              new_info_array << new_details
+
+              new_info_array.each do |ntrait|
+
+                if ntrait.include?("food")
+                  self.nutrition = ntrait
+                elsif ntrait.include?("coat")
+                  self.grooming = ntrait
+                elsif ntrait.include?("exercise")
+                  self.exercise = ntrait
+                elsif ntrait.include?("train")
+                  self.training = ntrait
+                elsif ntrait.include?("health")
+                  self.health = ntrait
+                end
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end

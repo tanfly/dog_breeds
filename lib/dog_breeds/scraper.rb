@@ -10,7 +10,7 @@ class DogBreeds::Scraper
      self.get_page.css("div.breed-type-card")
   end
 
-  def make_restaurants
+  def make_dog_breeds
     scrape_restaurants_index.each do |dog_breed|
       WorldsBestRestaurants::Restaurant.new_from_index_page(dog_breed)
     end
