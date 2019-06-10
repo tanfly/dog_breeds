@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Stella McEwen'"]
   spec.email         = ["'mcewen.stella@gmail.com'"]
 
-  spec.summary       = %q{summary}
-  spec.description   = %q{description}
+  spec.summary       = %q{A CLI app that provides information on dog breeds}
+  spec.description   = %q{This CLI allows the user to ask about dog breeds, and receive a compendium of info in return, scraped from the AKC website}
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
