@@ -8,28 +8,28 @@ class DogBreeds::CLI
 
   def start
     puts ""
-    puts "What number restaurants would you like to see? 1-10, 11-20, 21-30, 31-40 or 41-50?"
+    puts "Which number dog breeds would you like to see? 1-34, 35-68, 36-102, 103-136, 137-170, 171-204, 205-238, or 239-272?"
     input = gets.strip.to_i
 
-    print_restaurants(input)
+    show_dog_breeds(input)
 
     puts ""
-    puts "What restaurant would you like more information on?"
+    puts "Please enter the number of the dog breed you would like more information on:"
     input = gets.strip
 
-    restaurant = WorldsBestRestaurants::Restaurant.find(input.to_i)
+    dog_breed = DogBreeds::DogBreed.find(input.to_i)
 
-    print_restaurant(restaurant)
+    print_dog_breed(dog_breed)
 
     puts ""
-    puts "Would you like to see another restaurant? Enter Y or N"
+    puts "Would you like to see another dog breed? Enter Y or N"
 
     input = gets.strip.downcase
     if input == "y"
       start
     elsif input == "n"
       puts ""
-      puts "Thank you! Have a great day!"
+      puts "Thanks for learning about dogs!"
       exit
     else
       puts ""
@@ -38,29 +38,47 @@ class DogBreeds::CLI
     end
   end
 
-  def print_restaurant(restaurant)
+  def print_dog_breed(dog_breed)
     puts ""
-    puts "----------- #{restaurant.name} - #{restaurant.position} -----------"
     puts ""
-    puts "Location:           #{restaurant.location}"
-    puts "Head Chef:          #{restaurant.head_chef}"
-    puts "Style of Food:      #{restaurant.food_style}"
-    puts "Standout Dish:      #{restaurant.best_dish}"
-    puts "Contact:            #{restaurant.contact}"
-    puts "Website:            #{restaurant.website_url}"
     puts ""
-    puts "---------------Description--------------"
+    puts "+_+_+_+_+_ #{dog_breed.name} +_+_+_+_+_+_+_"
     puts ""
-    puts "#{restaurant.description}"
+    puts ""
+    puts " -*-*-*-*-*-*-*-* Summary -*-*-*-*-*-*-*-*- "
+    puts " >>>>>> #{dog_breed.summary}"
+    puts ""
+    puts "+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_"
+    puts ""
+    puts "Temperament:           #{dog_breed.temperament}"
+    puts "Popularity:            #{dog_breed.popularity}"
+    puts "Height:                #{dog_breed.height}"
+    puts "Weight:                #{dog_breed.weight}"
+    puts "Life Expectancy:       #{dog_breed.life_expectancy}"
+    puts "Nutrition:"
+    puts ">>>>>> #{dog_breed.nutrition}"
+    puts ""
+    puts "Grooming:"
+    puts ">>>>>> #{dog_breed.grooming}"
+    puts ""
+    puts "Exercise:"
+    puts ">>>>>> #{dog_breed.exercise}"
+    puts ""
+    puts "Training:"
+    puts ">>>>>> #{dog_breed.training}"
+    puts ""
+    puts "Health:"
+    puts ">>>>>> #{dog_breed.health}"
     puts ""
   end
 
-  def print_restaurants(from_number)
+
+  def show_dog_breeds(input)
     puts ""
-    puts "---------- Restaurants #{from_number} - #{from_number+9} ----------"
+    puts "---------- Dog Breeds #{input} - #{input+33} ----------"
     puts ""
-    WorldsBestRestaurants::Restaurant.all[from_number-1, 10].each.with_index(from_number) do |restaurant, index|
-      puts "#{index}. #{restaurant.name} - #{restaurant.location}"
+    DogBreeds::DogBreed.all[input-1, 34].each.with_index(input) do |dog_breed, index|
+      puts "#{index}. #{dog_breed.name}"
     end
   end
 
