@@ -8,7 +8,16 @@ class DogBreeds::CLI
 
   def start
     puts ""
-    puts "Which number dog breeds would you like to see? 1-34, 35-68, 36-102, 103-136, 137-170, 171-204, 205-238, or 239-272?"
+    puts "Which number dog breeds would you like to see?"
+    puts "1-34 (A - Berga)"
+    puts "35-68 (Berge - Cau)"
+    puts "36-102 (Cav - En)"
+    puts "103-136 (En - Irish T)"
+    puts "137-170 (Irish W - Ned)"
+    puts "171-204 (New - Pu)"
+    puts "205-238 (Py - So)"
+    puts "239-272 (Sp - Y)?"
+    puts "(Please enter a number)"
     input = gets.strip.to_i
 
     show_dog_breeds(input)
@@ -50,25 +59,39 @@ class DogBreeds::CLI
     puts ""
     puts "+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_"
     puts ""
-    puts "Temperament:           #{dog_breed.temperament}"
-    puts "Popularity:            #{dog_breed.popularity}"
-    puts "Height:                #{dog_breed.height}"
-    puts "Weight:                #{dog_breed.weight}"
-    puts "Life Expectancy:       #{dog_breed.life_expectancy}"
-    puts "Nutrition:"
-    puts ">>>>>> #{dog_breed.nutrition}"
+    puts "Temperament:           #{dog_breed.temperament}" unless dog_breed.temperament == nil
+    puts "Popularity:            #{dog_breed.popularity}" unless dog_breed.popularity == nil
+    puts "Height:                #{dog_breed.height}" unless dog_breed.height == nil
+    puts "Weight:                #{dog_breed.weight}" unless dog_breed.weight == nil
+    puts "Life Expectancy:       #{dog_breed.life_expectancy}" unless dog_breed.life_expectancy == nil
     puts ""
-    puts "Grooming:"
-    puts ">>>>>> #{dog_breed.grooming}"
-    puts ""
-    puts "Exercise:"
-    puts ">>>>>> #{dog_breed.exercise}"
-    puts ""
-    puts "Training:"
-    puts ">>>>>> #{dog_breed.training}"
-    puts ""
-    puts "Health:"
-    puts ">>>>>> #{dog_breed.health}"
+    puts "Nutrition:" unless dog_breed.nutrition == nil
+    puts "" unless dog_breed.nutrition == nil
+    puts "#{dog_breed.nutrition}" unless dog_breed.nutrition == nil
+    puts "" unless dog_breed.nutrition == nil
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" unless dog_breed.nutrition == nil
+    puts "" unless dog_breed.nutrition == nil
+    puts "Grooming:" unless dog_breed.grooming == nil
+    puts "" unless dog_breed.grooming == nil
+    puts "#{dog_breed.grooming}" unless dog_breed.grooming == nil
+    puts "" unless dog_breed.grooming == nil
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" unless dog_breed.grooming == nil
+    puts "" unless dog_breed.grooming == nil
+    puts "Exercise:" unless dog_breed.exercise == nil
+    puts "" unless dog_breed.exercise == nil
+    puts "#{dog_breed.exercise}" unless dog_breed.exercise == nil
+    puts "" unless dog_breed.exercise == nil
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" unless dog_breed.exercise == nil
+    puts "" unless dog_breed.exercise == nil
+    puts "Training:" unless dog_breed.training == nil
+    puts "" unless dog_breed.training == nil
+    puts "#{dog_breed.training}" unless dog_breed.training == nil
+    puts "" unless dog_breed.training == nil
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" unless dog_breed.training == nil
+    puts "" unless dog_breed.training == nil
+    puts "Health:" unless dog_breed.health == nil
+    puts "" unless dog_breed.health == nil
+    puts "#{dog_breed.health}" unless dog_breed.health == nil
     puts ""
   end
 
