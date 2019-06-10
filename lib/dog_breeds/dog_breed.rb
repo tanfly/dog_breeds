@@ -106,7 +106,7 @@ class DogBreeds::DogBreed
 
                 new_info_array.each do |new_traits|
 
-                  if new_traits.include?("food")
+                  if new_traits.include?("dog food")
                     breed_info[:nutrition] = new_traits
                   elsif new_traits.include?("coat")
                     breed_info[:grooming] = new_traits
