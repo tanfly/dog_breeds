@@ -1,12 +1,11 @@
 class DogBreeds::DogBreed
 
-  attr_reader :name, :temperament, :popularity, :height, :weight, :life_expectancy, :nutrition, :grooming, :exercise, :training, :health, :summary
+  attr_accessor :name, :temperament, :akc_breed_popularity, :height, :weight, :life_expectancy, :group, :nutrition, :grooming, :exercise, :training, :health, :summary
 
   @@all = []
-  @@breed_info = {}
 
   def self.new_from_index_page(dog_breed)
-    self.new(dog_breed.css("h3.breed-type-card__title").text, dog_breed.css("div.breed-type-card a.attribute href"))
+    self.new(dog_breed.css("h3.breed-type-card__title").text, dog_breed.css("div.breed-type-card a.attribute href").text)
   end
 
   def initialize(name = nil, url = nil)
@@ -23,51 +22,48 @@ class DogBreeds::DogBreed
     self.all[id-1]
   end
 
+  
   def summary
     @summary ||= doc.css('div.breed-hero__footer').text.strip
   end
 
   def doc
     @doc ||= Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
-    #is this the same as the URL?
   end
 
-  def breed_info_temperament_through_life_expectancy
+def scrape_breed_info
+
+    @breed_info = {}
 
 
-    doc.css('ul.attribute-list > li.attribute-list__row').collect do |li|
-      text = li.children.text.strip.split("\n")
-      text.each_slice(2) do |trait, description|
-      @@breed_info[trait.downcase.gsub(":","").to_sym] = description.strip
+ doc.css('ul.attribute-list > li.attribute-list__row').collect do |li|
+    text = li.children.text.strip.split("\n")
+    text.each_slice(2) do |header, info|
+    @breed_info[header.downcase.gsub(":","").to_sym] = info.strip
+      if header.include?("temperament" || "popularity" || "height" || "weight" || "life_expectancy")
+
+
+    doc.css('#breed-care div.tabs__panel-wrap').collect do |infos|
+      texts = infos.children.text.strip.split("\n").reject{|str| str.strip.empty?}
+      texts.each_slice(2) do |key, value| 
+       @breed_info[key.strip.downcase.to_sym] = value.strip if key.include?("nutrition" || "grooming" || "exercise" || "training" || "health")
+
+	 
+	        end
+	      end
+      end
     end
+  end
+         @breed_info
+         binding.pry
+  end
+  
+  
+  def get_info
+    scrape_breed_info.each do |trait, desc|
+       self.send("#{trait.to_s.gsub(" ", "_")}=", desc)
   end
 end
-
-      
- 
- 
-  def breed_info_nutrition_through_health 
-
-
-    doc.css('#breed-care div.tabs__panel-wrap').collect do |li|
-      text = li.children.text.strip.split("\n").reject{|str| str.strip.empty?}
-      
-      text.each_slice(2) do |trait, description| 
-       @@breed_info[trait.strip.downcase.to_sym] = description.strip
-     end
-   end
- end
- 
-  
-  def get_info 
-    @@breed_info.each do |trait, description|
-   self.send("#{trait.to_s}=", description)
-    end
- end
-
-
-
-
 
 
 end

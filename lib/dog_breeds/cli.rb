@@ -48,7 +48,7 @@ class DogBreeds::CLI
   end
 
   def print_dog_breed(dog_breed)
-    #dog_breed.get_info 
+    dog_breed.get_info 
     puts ""
     puts ""
     puts ""
@@ -61,10 +61,11 @@ class DogBreeds::CLI
     puts "+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_"
     puts ""
     puts "Temperament:           #{dog_breed.temperament}" unless dog_breed.temperament == nil
-    puts "Popularity:            #{dog_breed.popularity}" unless dog_breed.popularity == nil
+    puts "Popularity:            #{dog_breed.akc_breed_popularity}" unless dog_breed.akc_breed_popularity == nil
     puts "Height:                #{dog_breed.height}" unless dog_breed.height == nil
     puts "Weight:                #{dog_breed.weight}" unless dog_breed.weight == nil
     puts "Life Expectancy:       #{dog_breed.life_expectancy}" unless dog_breed.life_expectancy == nil
+    puts "Group:                 #{dog_breed.group}" unless dog_breed.group == nil
     puts ""
     puts "Nutrition:" unless dog_breed.nutrition == nil
     puts "" unless dog_breed.nutrition == nil
