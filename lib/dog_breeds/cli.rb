@@ -48,6 +48,7 @@ class DogBreeds::CLI
   end
 
   def print_dog_breed(dog_breed)
+    #dog_breed.get_info 
     puts ""
     puts ""
     puts ""

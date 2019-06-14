@@ -30,44 +30,45 @@ class DogBreeds::DogBreed
     @popularity ||= scrape_breed_info[:popularity]
   end
 
-  def height
-    @height ||= scrape_breed_info[:height]
-  end
+  # def height
+  #   @height ||= scrape_breed_info[:height]
+  # end
 
-  def weight
-    @weight ||= scrape_breed_info[:weight]
-  end
+  # def weight
+  #   @weight ||= scrape_breed_info[:weight]
+  # end
 
-  def life_expectancy
-    @life_expectancy ||= scrape_breed_info[:life_expectancy]
-  end
+  # def life_expectancy
+  #   @life_expectancy ||= scrape_breed_info[:life_expectancy]
+  # end
 
-  def nutrition
-    @nutrition ||= scrape_breed_info[:nutrition]
-  end
+  # def nutrition
+  #   @nutrition ||= scrape_breed_info[:nutrition]
+  # end
 
-  def grooming
-    @grooming ||= scrape_breed_info[:grooming]
-  end
+  # def grooming
+  #   @grooming ||= scrape_breed_info[:grooming]
+  # end
 
-  def exercise
-    @exercise ||= scrape_breed_info[:exercise]
-  end
+  # def exercise
+  #   @exercise ||= scrape_breed_info[:exercise]
+  # end
 
-  def training
-    @training ||= scrape_breed_info[:training]
-  end
+  # def training
+  #   @training ||= scrape_breed_info[:training]
+  # end
 
-  def health
-    @health ||= scrape_breed_info[:health]
-  end
+  # def health
+  #   @health ||= scrape_breed_info[:health]
+  # end
 
-  def summary
-    @summary ||= doc.css('div.breed-hero__footer').text.strip
-  end
+  # def summary
+  #   @summary ||= doc.css('div.breed-hero__footer').text.strip
+  # end
 
   def doc
     @doc ||= Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
+    #is this the same as the URL?
   end
 
   def scrape_breed_info
@@ -125,6 +126,7 @@ class DogBreeds::DogBreed
       end
     end
          breed_info
+         binding.pry
   end
 
 
