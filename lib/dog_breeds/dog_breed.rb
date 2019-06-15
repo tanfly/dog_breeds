@@ -16,9 +16,14 @@ class DogBreeds::DogBreed
   def self.all
     @@all
   end
+  
 
   def self.find(id)
     self.all[id-1]
+  end
+  
+  def country_of_origin
+    self.country_of_origin = DogBreeds::CountryOfOrigin.all.sample
   end
 
   
