@@ -33,35 +33,37 @@ class DogBreeds::DogBreed
 
 def scrape_breed_info
 
-    @breed_info = {}
+    breed_info = {}
 
 
  doc.css('ul.attribute-list > li.attribute-list__row').collect do |li|
     text = li.children.text.strip.split("\n")
     text.each_slice(2) do |header, info|
-    @breed_info[header.downcase.gsub(":","").to_sym] = info.strip
-      if header.include?("temperament" || "popularity" || "height" || "weight" || "life_expectancy")
+      if header != nil && info != nil
+    breed_info[header.downcase.gsub(":","").to_sym] = info.strip
+      
 
 
     doc.css('#breed-care div.tabs__panel-wrap').collect do |infos|
       texts = infos.children.text.strip.split("\n").reject{|str| str.strip.empty?}
       texts.each_slice(2) do |key, value| 
-       @breed_info[key.strip.downcase.to_sym] = value.strip if key.include?("nutrition" || "grooming" || "exercise" || "training" || "health")
+        if key != nil && value != nil
+       breed_info[key.strip.downcase.to_sym] = value.strip 
 
-	 
+	          end
 	        end
 	      end
       end
     end
   end
-         @breed_info
-         binding.pry
+          breed_info
+       
   end
   
   
   def get_info
     scrape_breed_info.each do |trait, desc|
-       self.send("#{trait.to_s.gsub(" ", "_")}=", desc)
+       self.send("#{trait.to_s.gsub(" ", "_")}=", desc) if self.respond_to?("#{trait.to_sym}=")
   end
 end
 
