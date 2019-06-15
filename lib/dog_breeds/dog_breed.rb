@@ -38,6 +38,7 @@ def scrape_breed_info
  doc.css('ul.attribute-list > li.attribute-list__row').collect do |li|
     text = li.children.text.strip.split("\n")
     text.each_slice(2) do |header, info|
+      if header != nil && info != nil
     breed_info[header.downcase.gsub(":","").to_sym] = info.strip
       
 
@@ -45,9 +46,10 @@ def scrape_breed_info
     doc.css('#breed-care div.tabs__panel-wrap').collect do |infos|
       texts = infos.children.text.strip.split("\n").reject{|str| str.strip.empty?}
       texts.each_slice(2) do |key, value| 
+        if key != nil && value != nil
        breed_info[key.strip.downcase.to_sym] = value.strip 
-
-	 
+            end
+	        end
 	      end
       end
     end
