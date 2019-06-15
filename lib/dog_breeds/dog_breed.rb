@@ -1,6 +1,6 @@
 class DogBreeds::DogBreed
 
-  attr_accessor :name, :temperament, :akc_breed_popularity, :height, :weight, :life_expectancy, :group, :nutrition, :grooming, :exercise, :training, :health, :summary
+  attr_accessor :name, :temperament, :akc_breed_popularity, :height, :weight, :life_expectancy, :group, :nutrition, :grooming, :exercise, :training, :health, :summary, :country_of_origin
 
   @@all = []
 
