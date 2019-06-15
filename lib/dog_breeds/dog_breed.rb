@@ -23,11 +23,11 @@ class DogBreeds::DogBreed
 
   
   def summary
-    @summary ||= doc.css('div.breed-hero__footer').text.strip
+    @summary = doc.css('div.breed-hero__footer').text.strip
   end
 
   def doc
-    @doc ||= Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
+    @doc = Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
   end
 
 def scrape_breed_info
