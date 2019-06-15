@@ -10,12 +10,17 @@ class DogBreeds::CountryOfOrigin
     @breeds = []
   end
 
-  def new_from_source(country)
+  def self.new_from_source(country)
     self.new(country)
   end
   
   def self.all 
     @@all
+  end
+  
+  def add_dog_breed(dog_breed)
+    @@breeds << dog_breed 
+    dog_breed.country_of_origin = self
   end
   
 end

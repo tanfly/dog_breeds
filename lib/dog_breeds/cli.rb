@@ -53,6 +53,7 @@ class DogBreeds::CLI
     puts ""
     puts ""
     puts "+_+_+_+_+_ #{dog_breed.name} +_+_+_+_+_+_+_"
+    puts "...........from #{dog_breed.country_of_origin}..............."
     puts ""
     puts ""
     puts " -*-*-*-*-*-*-*-* Summary -*-*-*-*-*-*-*-*- "

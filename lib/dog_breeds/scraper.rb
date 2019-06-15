@@ -24,8 +24,10 @@ end
   def countries_of_origin
     countries = [ "North Ilandtic", "Liwanma", "Brie", "New Bamivo", "Sergoda", "Matu", "Eritu", "Rados", "Malebabu Land", "Sodaand"]
     countries.each do |country| 
+      binding.pry
       DogBreeds::CountryOfOrigin.new_from_source(country)
   end
+end
 
 
 
