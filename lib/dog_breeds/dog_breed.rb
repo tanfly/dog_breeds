@@ -5,12 +5,11 @@ class DogBreeds::DogBreed
   @@all = []
 
   def self.new_from_index_page(dog_breed)
-    self.new(dog_breed.css("h3.breed-type-card__title").text, dog_breed.css("div.breed-type-card a.attribute href").text)
+    self.new(dog_breed.css("h3.breed-type-card__title").text)
   end
 
-  def initialize(name = nil, url = nil)
+  def initialize(name = nil)
     @name = name
-    @url = url
     @@all << self
   end
 
