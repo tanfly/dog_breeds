@@ -20,10 +20,6 @@ class DogBreeds::DogBreed
   def self.find(id)
     self.all[id-1]
   end
-  
-  def country_of_origin
-    @country_of_origin = DogBreeds::CountryOfOrigin.all.sample.name
-  end
 
   
   def summary
