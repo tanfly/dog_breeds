@@ -8,9 +8,8 @@ class DogBreeds::DogBreed
     self.new(dog_breed.css("h3.breed-type-card__title").text)
   end
 
-  def initialize(name = nil, country_of_origin = nil)
+  def initialize(name = nil)
     @name = name
-    @country_of_origin = country_of_origin
     @@all << self
   end
 
@@ -23,9 +22,11 @@ class DogBreeds::DogBreed
     self.all[id-1]
   end
   
-  def country_of_origin
-    self.country_of_origin = DogBreeds::CountryOfOrigin.all.sample
+  def country_of_origin=(country)
+    self.country_of_origin = DogBreeds::CountryOfOrigin.find_or_create_by_name(country)
+    country_of_origin.add_dog_breed(self)
   end
+  
 
   
   def summary
