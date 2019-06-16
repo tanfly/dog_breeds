@@ -14,9 +14,16 @@ class DogBreeds::CountryOfOrigin
     @@all
   end
   
-  def dog_breeds(dog_breed)
-    dog_breed.country_of_origin=(self.all.sample.name) 
-    @breeds < dog_breed
+   def add_dog_breed(dog_breed)
+    @breeds << dog_breed
+    dog_breed.country_of_origin = @@all.sample.name
   end
+  
+  def breeds
+    @breeds.collect_with_index { |dog_breed, index|
+      "#{index}. #{dog_breed}"
+    }
+  end
+  
   
 end
