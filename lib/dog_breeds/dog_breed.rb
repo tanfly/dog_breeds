@@ -17,16 +17,13 @@ class DogBreeds::DogBreed
     @@all
   end
   
-
   def self.find(id)
     self.all[id-1]
   end
   
-  def country_of_origin=(country)
-    self.country_of_origin = DogBreeds::CountryOfOrigin.find_or_create_by_name(country)
-    country_of_origin.add_dog_breed(self)
+  def country_of_origin
+    @country_of_origin = DogBreeds::CountryOfOrigin.all.sample.name
   end
-  
 
   
   def summary
@@ -66,7 +63,7 @@ def scrape_breed_info
   end
   
   
-  def get_info
+def get_info
     scrape_breed_info.each do |trait, desc|
        self.send("#{trait.to_s.gsub(" ", "_")}=", desc) if self.respond_to?("#{trait.to_sym}=")
   end
