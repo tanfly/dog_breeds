@@ -5,10 +5,10 @@ class DogBreeds::DogBreed
   @@all = []
 
   def self.new_from_index_page(dog_breed)
-    self.new(dog_breed.css("h3.breed-type-card__title").text, @country_of_origin)
+    self.new(dog_breed.css("h3.breed-type-card__title").text)
   end
 
-  def initialize(name = nil, country_of_origin)
+  def initialize(name = nil, country_of_origin = nil)
     @name = name
     @country_of_origin = country_of_origin
     @@all << self

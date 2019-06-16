@@ -18,8 +18,8 @@ class DogBreeds::CountryOfOrigin
     @@all
   end
   
-  def add_dog_breed(dog_breed)
-    @@breeds << dog_breed 
+  def add_dog_breed_from_scrape(dog_breed)
+    @@breeds << dog_breed.css("h3.breed-type-card__title").text 
     dog_breed.country_of_origin = self
   end
   
