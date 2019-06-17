@@ -21,14 +21,8 @@ class DogBreeds::DogBreed
     self.all[id-1]
   end
   
-  def country_of_origin
-    @country_of_origin = DogBreeds::CountryOfOrigin.all.sample.name
-  end
-  
-  def country
-    @@all.each do |dog_breed|
-      country_of_origin.add_dog_breed(dog_breed)
-    end
+  def add_country_of_origin
+   DogBreeds::CountryOfOrigin.add_dog_breed(self)
   end
 
   
@@ -75,5 +69,5 @@ def get_info
   end
 end
 
-
+binding.pry
 end
