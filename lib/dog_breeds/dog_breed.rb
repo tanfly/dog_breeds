@@ -69,5 +69,5 @@ def get_info
   end
 end
 
-binding.pry
+
 end

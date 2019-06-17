@@ -14,7 +14,7 @@ class DogBreeds::CountryOfOrigin
     @@all
   end
   
-   def self.add_dog_breed(dog_breed)
+  def add_dog_breed(dog_breed)
     @breeds << dog_breed
     dog_breed.country_of_origin = @@all.sample.name
   end
