@@ -22,7 +22,7 @@ class DogBreeds::DogBreed
   end
   
   def add_country_of_origin
-   DogBreeds::CountryOfOrigin.add_dog_breed(self)
+   country_of_origin.add_dog_breed(self)
   end
 
   
@@ -69,5 +69,5 @@ def get_info
   end
 end
 
-
+binding.pry
 end

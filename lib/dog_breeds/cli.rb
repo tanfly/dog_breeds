@@ -1,8 +1,8 @@
 class DogBreeds::CLI
 
   def call
-    DogBreeds::Scraper.new.make_dog_breeds
     DogBreeds::Scraper.new.countries_of_origin
+    DogBreeds::Scraper.new.make_dog_breeds
     puts "Welcome to the Dog Breed Info App!"
     start
   end
