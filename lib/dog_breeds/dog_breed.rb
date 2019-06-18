@@ -4,12 +4,9 @@ class DogBreeds::DogBreed
 
   @@all = []
 
-  def self.new_from_index_page(dog_breed)
-    self.new(dog_breed.css("h3.breed-type-card__title").text)
-  end
-
-  def initialize(name = nil)
+  def initialize(name = nil, country_of_origin = nil)
     @name = name
+    @country_of_origin = country_of_origin
     @@all << self
   end
 
@@ -20,12 +17,7 @@ class DogBreeds::DogBreed
   def self.find(id)
     self.all[id-1]
   end
-  
-  def add_country_of_origin
-   country_of_origin.add_dog_breed(self)
-  end
 
-  
   def summary
     @summary = doc.css('div.breed-hero__footer').text.strip
   end
@@ -34,7 +26,7 @@ class DogBreeds::DogBreed
     @doc = Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
   end
 
-def scrape_breed_info
+  def scrape_breed_info
 
     breed_info = {}
 
@@ -69,5 +61,4 @@ def get_info
   end
 end
 
-binding.pry
 end

@@ -1,11 +1,5 @@
-class DogBreeds::Scraper
+class DogBreeds::ScrapeDogBreeds
   
-  def countries_of_origin
-    countries = [ "North Ilandtic", "Liwanma", "Brie", "New Bamivo", "Sergoda", "Matu", "Eritu", "Rados", "Malebabu Land", "Sodaand"]
-    countries.each {|country| DogBreeds::CountryOfOrigin.new(country)}
-  end
-  
-
   def scrape_breed_elements
     dog_breed_elements = []
 
@@ -24,7 +18,8 @@ end
 
   def make_dog_breeds
     scrape_breed_elements.each do |dog_breed_element|
-      DogBreeds::DogBreed.new_from_index_page(dog_breed_element)
+       dog_breed = dog_breed_element.css("h3.breed-type-card__title").text
+         DogBreeds::CountryOfOrigin.add_dog_breed(dog_breed)
     end
   end
 
