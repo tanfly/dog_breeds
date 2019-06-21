@@ -21,8 +21,8 @@ class DogBreeds::DogBreed
     @summary = doc.css('div.breed-hero__footer').text.strip
   end
   
-  def country_of_origin=(country)
-  @country_of_origin = country_of_origin.add_dog_breed(self)
+  def get_country_of_origin
+    self.send("country_of_origin=", country_of_origin.add_dog_breed(self))
   end
   
   def doc

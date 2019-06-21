@@ -50,6 +50,7 @@ class DogBreeds::CLI
 
   def print_dog_breed(dog_breed)
     dog_breed.get_info 
+    dog_breed.get_country_of_origin
     puts ""
     puts ""
     puts ""
