@@ -20,6 +20,12 @@ class DogBreeds::DogBreed
   def summary
     @summary = doc.css('div.breed-hero__footer').text.strip
   end
+  
+  def add_country_of_origin
+    @@all.each do |dog_breed|
+      DogBreeds::CountryOfOrigin.add_dog_breed(dog_breed)
+    end
+  end
 
   def doc
     @doc = Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))

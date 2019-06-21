@@ -19,7 +19,7 @@ end
   def make_dog_breeds
     scrape_breed_elements.each do |dog_breed_element|
        dog_breed = dog_breed_element.css("h3.breed-type-card__title").text
-         DogBreeds::DogBreed.add_dog_breed(dog_breed)
+         DogBreeds::DogBreed.new(dog_breed)
     end
   end
 
