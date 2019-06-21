@@ -4,9 +4,8 @@ class DogBreeds::DogBreed
 
   @@all = []
 
-  def initialize(name = nil, country_of_origin = nil)
+  def initialize(name = nil)
     @name = name
-    @country_of_origin = country_of_origin
     @@all << self
   end
 
