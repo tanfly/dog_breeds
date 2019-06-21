@@ -4,7 +4,7 @@ class DogBreeds::DogBreed
 
   @@all = []
 
-  def initialize(name = nil)
+  def initialize(name = nil, country_of_origin = nil)
     @name = name
     @@all << self
   end
@@ -21,12 +21,10 @@ class DogBreeds::DogBreed
     @summary = doc.css('div.breed-hero__footer').text.strip
   end
   
-  def add_country_of_origin
-    @@all.each do |dog_breed|
-      DogBreeds::CountryOfOrigin.add_dog_breed(dog_breed)
-    end
+  def country_of_origin=(country)
+  @country_of_origin = country_of_origin.add_dog_breed(self)
   end
-
+  
   def doc
     @doc = Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))
   end
