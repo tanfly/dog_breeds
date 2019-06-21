@@ -22,7 +22,7 @@ class DogBreeds::DogBreed
   end
   
   def get_country_of_origin
-    self.send("country_of_origin=", country_of_origin.add_dog_breed(self))
+    country_of_origin.add_dog_breed(self)
   end
   
   def doc
