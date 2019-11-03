@@ -1,10 +1,10 @@
 class DogBreeds::DogBreed
 
-  attr_accessor :name, :temperament, :akc_breed_popularity, :height, :weight, :life_expectancy, :group, :nutrition, :grooming, :exercise, :training, :health, :summary, :country_of_origin
+  attr_accessor :name, :temperament, :akc_breed_popularity, :height, :weight, :life_expectancy, :group, :nutrition, :grooming, :exercise, :training, :health, :summary
 
   @@all = []
 
-  def initialize(name = nil, country_of_origin = nil)
+  def initialize(name = nil)
     @name = name
     @@all << self
   end
@@ -21,9 +21,6 @@ class DogBreeds::DogBreed
     @summary = doc.css('div.breed-hero__footer').text.strip
   end
   
-  def get_country_of_origin
-    country_of_origin.add_dog_breed(self)
-  end
   
   def doc
     @doc = Nokogiri::HTML(open("https://www.akc.org/dog-breeds/#{self.name.gsub(/\s+/, '-')}/"))

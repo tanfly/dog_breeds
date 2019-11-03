@@ -1,7 +1,6 @@
 class DogBreeds::CLI
 
   def call
-    DogBreeds::ScrapeCountries.new.make_countries
     DogBreeds::ScrapeDogBreeds.new.make_dog_breeds
     puts "Welcome to the Dog Breed Info App!"
     start
@@ -50,12 +49,10 @@ class DogBreeds::CLI
 
   def print_dog_breed(dog_breed)
     dog_breed.get_info 
-    dog_breed.get_country_of_origin
     puts ""
     puts ""
     puts ""
     puts "+_+_+_+_+_ #{dog_breed.name} +_+_+_+_+_+_+_"
-    puts "...........from #{dog_breed.country_of_origin}..............."
     puts ""
     puts ""
     puts " -*-*-*-*-*-*-*-* Summary -*-*-*-*-*-*-*-*- "
